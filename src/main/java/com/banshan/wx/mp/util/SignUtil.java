@@ -12,7 +12,7 @@ public class SignUtil {
     /**
      * 与接口配置信息中的 Token 要一致
      */
-    private static final String token = "xxx";
+    private static final String token = "banshan";
 
     /**
      * 验证签名
