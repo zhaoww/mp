@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.Map;
 
-import static com.banshan.wx.mp.common.enums.MsgFnEnum.QR_CODE;
-import static com.banshan.wx.mp.common.enums.MsgFnEnum.WEATHER;
+import static com.banshan.wx.mp.common.constants.VarsConstants.CONTENT;
+import static com.banshan.wx.mp.common.enums.MsgFnEnum.*;
 
 /**
  * @author 半山兄
@@ -32,20 +32,27 @@ public class ReplyMsgServiceImpl implements IReplyMsgService {
 
     @Override
     public String reply(Map<String, String> requestMap) {
-        String resp = "";
+        String resp;
         BaseMessage baseMessage = new BaseMessage();
         baseMessage.setFromUserName(requestMap.get("ToUserName"));
         baseMessage.setToUserName(requestMap.get("FromUserName"));
         baseMessage.setCreateTime(System.currentTimeMillis());
         baseMessage.setMsgType(requestMap.get("MsgType"));
 
-        if (requestMap.get("Content").contains(WEATHER.getCode())) {
-            String content = weatherService.getWeatherDtlInfo(areaCode);
+        String content = requestMap.get(CONTENT);
+        if (content.contains(FN_ALL.getCode())) {
+            String respContent = "1. 查询天气; 2. 查询快递; 3. 生成二维码";
             TextMessage textMessage = new TextMessage();
             BeanUtils.copyProperties(baseMessage, textMessage);
-            textMessage.setContent(content);
+            textMessage.setContent(respContent);
             resp = MessageUtil.messageToXML(textMessage, TextMessage.class);
-        } else if (requestMap.get("Content").contains(QR_CODE.getCode())) {
+        } else if (content.contains(WEATHER.getCode())) {
+            String respContent = weatherService.getWeatherDtlInfo(areaCode);
+            TextMessage textMessage = new TextMessage();
+            BeanUtils.copyProperties(baseMessage, textMessage);
+            textMessage.setContent(respContent);
+            resp = MessageUtil.messageToXML(textMessage, TextMessage.class);
+        } else if (content.contains(QR_CODE.getCode())) {
             qrCodeService.generateToPath();
             // todo 暴露图片地址
             String picUrl = "";
@@ -54,7 +61,6 @@ public class ReplyMsgServiceImpl implements IReplyMsgService {
             imageMessage.setPicUrl(picUrl);
             resp = MessageUtil.messageToXML(imageMessage, ImageMessage.class);
         } else {
-            String content = requestMap.get("Content");
             TextMessage textMessage = new TextMessage();
             BeanUtils.copyProperties(baseMessage, textMessage);
             textMessage.setContent(content);

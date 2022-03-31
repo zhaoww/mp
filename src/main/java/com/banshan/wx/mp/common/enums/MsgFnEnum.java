@@ -14,7 +14,8 @@ public enum MsgFnEnum {
      * MsgFnEnum
      */
     WEATHER("天气", MsgTypeEnum.TEXT.getCode()),
-    QR_CODE("二维码", MsgTypeEnum.IMAGE.getCode());
+    QR_CODE("二维码", MsgTypeEnum.IMAGE.getCode()),
+    FN_ALL("功能大全", MsgTypeEnum.TEXT.getCode());
 
     /**
      * code
