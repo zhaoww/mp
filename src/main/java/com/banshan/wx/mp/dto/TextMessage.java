@@ -1,8 +1,6 @@
 package com.banshan.wx.mp.dto;
 
 /**
- *
- *
  * @author zhaoww
  * @since 2022/2/24
  */

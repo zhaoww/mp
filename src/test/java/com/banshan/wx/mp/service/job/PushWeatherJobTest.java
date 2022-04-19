@@ -16,7 +16,7 @@ public class PushWeatherJobTest {
     private PushWeatherJob pushWeatherJob;
 
     @Test
-    public void test(){
+    public void test() {
         pushWeatherJob.handle();
     }
 }

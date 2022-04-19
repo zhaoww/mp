@@ -3,15 +3,13 @@ package com.banshan.wx.mp.model;
 import lombok.Data;
 
 /**
- *
- *
  * @author zhaoww
  * @since 2022/3/1
  */
 @Data
 public class EmailDto {
     //必填参数
-    private  String from;
+    private String from;
 
     private String to;//接收方邮件
 

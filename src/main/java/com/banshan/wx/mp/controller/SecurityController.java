@@ -28,7 +28,7 @@ public class SecurityController {
     @Resource
     private IReplyMsgService replyMsgService;
 
-    @RequestMapping(value = "security", method = RequestMethod.GET,produces = "text/html;charset=utf-8")
+    @RequestMapping(value = "security", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
     public void doGet(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -53,7 +53,7 @@ public class SecurityController {
     /**
      * post方法用于接收微信服务端消息
      *
-     * @param request req
+     * @param request  req
      * @param response resp
      */
     @RequestMapping(value = "security", method = RequestMethod.POST, produces = "text/html;charset=utf-8")

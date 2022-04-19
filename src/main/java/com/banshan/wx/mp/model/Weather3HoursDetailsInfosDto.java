@@ -1,8 +1,6 @@
 package com.banshan.wx.mp.model;
 
 /**
- *
- *
  * @author zhaoww
  * @since 2022/3/1
  */

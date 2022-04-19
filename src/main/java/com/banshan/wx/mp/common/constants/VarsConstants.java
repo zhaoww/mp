@@ -8,4 +8,8 @@ package com.banshan.wx.mp.common.constants;
  */
 public interface VarsConstants {
     String CONTENT = "Content";
+    /**
+     * ocr token key
+     */
+    String BAIDU_OCR_ACCESS_TOKEN_KEY = "baidu.ocr.access_token";
 }

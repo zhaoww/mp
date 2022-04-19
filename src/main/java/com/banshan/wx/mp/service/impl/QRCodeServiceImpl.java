@@ -23,6 +23,14 @@ import java.util.Map;
 public class QRCodeServiceImpl implements IQRCodeService {
     private static final String QR_CODE_IMAGE_PATH = "/Users/weiweizhao/Desktop/MyQRCode.png";
 
+    public static void main(String[] args) {
+
+        new QRCodeServiceImpl().generateToPath();
+        byte[] bytes = new QRCodeServiceImpl().generateToBytes();
+        System.out.println(bytes);
+
+    }
+
     @Override
     public void generateToPath() {
         try {
@@ -52,15 +60,6 @@ public class QRCodeServiceImpl implements IQRCodeService {
         Map<EncodeHintType, String> hints = new HashMap<>(2);
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         return qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height, hints);
-    }
-
-
-    public static void main(String[] args) {
-
-        new QRCodeServiceImpl().generateToPath();
-        byte[] bytes = new QRCodeServiceImpl().generateToBytes();
-        System.out.println(bytes);
-
     }
 
 

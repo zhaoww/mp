@@ -1,7 +1,10 @@
 package com.banshan.wx.mp.service.impl;
 
+import com.banshan.wx.mp.model.WeatherRealtimeDto;
+import com.banshan.wx.mp.model.WeatherResponseDto;
+import com.banshan.wx.mp.model.WeatherValueDto;
+import com.banshan.wx.mp.model.WeathersDto;
 import com.banshan.wx.mp.service.IWeatherService;
-import com.banshan.wx.mp.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -24,8 +27,8 @@ public class WeatherServiceImpl implements IWeatherService {
 
     @Override
     public String getWeatherDtlInfo(String areaCode) {
-        WeatherResponseDto dto = restTemplate.getForObject(weatherUrl+"?cityIds=" + areaCode, WeatherResponseDto.class);
-        if (dto == null){
+        WeatherResponseDto dto = restTemplate.getForObject(weatherUrl + "?cityIds=" + areaCode, WeatherResponseDto.class);
+        if (dto == null) {
             return "查询天气异常";
         }
         return buildContent(dto);
@@ -33,10 +36,11 @@ public class WeatherServiceImpl implements IWeatherService {
 
     /**
      * todo 模版
+     *
      * @param dto
      * @return
      */
-    private String buildContent(WeatherResponseDto dto){
+    private String buildContent(WeatherResponseDto dto) {
         StringBuilder sb = new StringBuilder();
         if (!CollectionUtils.isEmpty(dto.getValue())) {
             WeatherValueDto weatherValueDto = dto.getValue().get(0);

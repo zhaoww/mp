@@ -1,17 +1,15 @@
 package com.banshan.wx.mp.job;
 
 import com.alibaba.fastjson.JSONObject;
+import com.banshan.wx.mp.model.SendAllRequest;
 import com.banshan.wx.mp.service.IWeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
-import com.banshan.wx.mp.model.*;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,12 +42,12 @@ public class PushWeatherJob {
      * todo 个人版权限不够
      */
 //    @Scheduled(cron = "0 15 8 * *")
-    public void handle(){
+    public void handle() {
 
-        String weatherDtlInfo = weatherService.getWeatherDtlInfo( areaCode);
+        String weatherDtlInfo = weatherService.getWeatherDtlInfo(areaCode);
         System.out.println(weatherDtlInfo);
 
-        String url = sendAllUrl+ "?access_token=" +accessToken;
+        String url = sendAllUrl + "?access_token=" + accessToken;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

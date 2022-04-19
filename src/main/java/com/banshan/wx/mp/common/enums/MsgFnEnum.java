@@ -30,7 +30,7 @@ public enum MsgFnEnum {
     /**
      * enum
      *
-     * @param code c
+     * @param code  c
      * @param value v
      */
     MsgFnEnum(String code, String value) {
